@@ -4,31 +4,31 @@ require_once 'Movie.php';
 
 class Cinema {
 
-private $name;
-private $location;
-private array $movie = [];
+private string $name;
+private string $location;
+private array $movies = [];
 
-    public function __construct($name, $location, $movies) {
+    public function __construct(string $name, string $location, array $movies = []) {
         $this->name = $name;
         $this->location = $location;
-        $this->movie = $movies;
+        $this->movies = $movies;
     }
 
-    public function getMovies() {
-        return $this->movie;
+    public function getMovies(): array {
+        return $this->movies;
     }
 
     public function getMoviesStats() {
         $movieList = [];
-        foreach ($this->movie as $movie) {
+        foreach ($this->movies as $movie) {
             $movieList[] = $movie->getName() . "\n" . $movie->getRunningTime() . "\n" . $movie->getDirector() . "\n";
         }
         return $movieList;
     }
 
-    public function getLongestMovie() {
+    public function getLongestMovie(): ?Movie {
         $longestMovie = null;
-        foreach ($this->movie as $movie) {
+        foreach ($this->movies as $movie) {
             if ($longestMovie === null || $movie->getRunningTime() > $longestMovie->getRunningTime()) {
                 $longestMovie = $movie;
             }
@@ -52,23 +52,5 @@ function searchMovieTitlesByDirector($cinemas, $director) {
 
     return $titles;
 }
-
-$cinema1 = new Cinema("Cinepolis", "Barcelona", [
-    new Movie("Inception", 148, "Christopher Nolan"),
-    new Movie("The Matrix", 136, "Lana Wachowski, Lilly Wachowski"),
-    new Movie("Interstellar", 169, "Christopher Nolan")
-]);
-
-$cinema2 = new Cinema("Moobie", "Barcelona", [
-    new Movie("Hola2", 148, "Christopher Nolan"),
-    new Movie("The Matrix", 136, "Lana Wachowski, Lilly Wachowski"),
-    new Movie("Hola", 169, "Christopher Nolan")
-]);
-
-echo $cinema1->getMoviesStats()[0] . "\n";
-echo $cinema1->getMoviesStats()[1] . "\n";
-echo $cinema1->getMoviesStats()[2] . "\n";
-
-echo implode(", ", searchMovieTitlesByDirector([$cinema1, $cinema2], "Christopher Nolan")) . "\n";
     
 ?>
