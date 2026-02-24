@@ -14,6 +14,14 @@ private array $movies = [];
         $this->movies = $movies;
     }
 
+    public function getName(): string {
+        return $this->name;
+    }
+
+    public function getLocation(): string {
+        return $this->location;
+    }
+    
     public function getMovies(): array {
         return $this->movies;
     }
