@@ -17,6 +17,9 @@ if ($director !== '') {
 }
 
 $cinema = $_GET['filter'] ?? '';
+if ($cinema === '' && !empty($cinemas)) {
+    $cinema = $cinemas[0]->getName();
+}
 $filteredMovies = [];
 $longestMovie = null;
 
@@ -28,6 +31,22 @@ if ($cinema !== '') {
             break;
         }
     }
+}
+
+function searchMovieTitlesByDirector($cinemas, $director) {
+    $titles = [];
+
+    foreach ($cinemas as $cinema) {
+        foreach ($cinema->getMovies() as $movie) {
+            if ($movie->getDirector() === $director) {
+                if (!in_array($movie->getName(), $titles)) {
+                    $titles[] = $movie->getName();
+                }
+            }
+        }
+    }
+
+    return $titles;
 }
 
 ?>
