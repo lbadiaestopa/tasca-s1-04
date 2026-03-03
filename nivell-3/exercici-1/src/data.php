@@ -6,7 +6,7 @@ $cinemas = [
 
     new Cinema("Cinepolis", "Barcelona", [
         new Movie("Inception", 148, "Christopher Nolan"),
-        new Movie("The Matrix", 136, "Lana Wachowski, Lilly Wachowski"),
+        new Movie("The Matrix", 180, "Lana Wachowski, Lilly Wachowski"),
         new Movie("Interstellar", 169, "Christopher Nolan")
     ]),
     new Cinema("Yelmo Cines", "Madrid", [
