@@ -44,21 +44,5 @@ private array $movies = [];
         return $longestMovie;
     }
 }
-
-function searchMovieTitlesByDirector($cinemas, $director) {
-    $titles = [];
-
-    foreach ($cinemas as $cinema) {
-        foreach ($cinema->getMovies() as $movie) {
-            if ($movie->getDirector() === $director) {
-                if (!in_array($movie->getName(), $titles)) {
-                    $titles[] = $movie->getName();
-                }
-            }
-        }
-    }
-
-    return $titles;
-}
     
 ?>
